@@ -49,14 +49,14 @@ public class ClienteServiceTest {
     public void should_create_cliente() throws Exception {
         // Arrange
         // clientePadrao
-
+        clientePadrao.setCpf("917.658.321-01");
         // Act
         Cliente resultado = service.createCliente(clientePadrao);
 
         // Assert
         Assertions.assertNotNull(resultado);
         Assertions.assertEquals(resultado.getNome(), "Lua");
-        Assertions.assertEquals(resultado.getCpf(), "123.456.789-09");
+        Assertions.assertEquals(resultado.getCpf(), "917.658.321-01");
         Assertions.assertEquals(resultado.getEmail(), "lua@cat.com");
     }
 
@@ -125,6 +125,7 @@ public class ClienteServiceTest {
     public void should_update_cliente() throws Exception {
         // Arrange
         // clientePadrao
+        clientePadrao.setCpf("917.658.331-75");
         Cliente cliente = service.createCliente(clientePadrao);
 
         String newNome = "Estrela";
