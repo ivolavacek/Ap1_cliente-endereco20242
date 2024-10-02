@@ -50,6 +50,8 @@ public class ClienteServiceTest {
         // Arrange
         // clientePadrao
         clientePadrao.setCpf("917.658.321-01");
+        clientePadrao.setEmail("lua3@cat.com");
+        clientePadrao.setTelefone("(21)12345-9905");
         // Act
         Cliente resultado = service.createCliente(clientePadrao);
 
@@ -126,6 +128,8 @@ public class ClienteServiceTest {
         // Arrange
         // clientePadrao
         clientePadrao.setCpf("917.658.331-75");
+        clientePadrao.setEmail("lua2@cat.com");
+        clientePadrao.setTelefone("(21)12345-9902");
         Cliente cliente = service.createCliente(clientePadrao);
 
         String newNome = "Estrela";
