@@ -25,7 +25,7 @@ public class ClienteServiceTest {
     private Endereco enderecoPadrao;
 
     @BeforeEach
-    public void setup() {
+    public void setup() throws Exception{
         // Cria um cliente padrão
         clientePadrao = new Cliente();
         clientePadrao.setNome("Lua");
@@ -48,18 +48,21 @@ public class ClienteServiceTest {
     @Test
     public void should_create_cliente() throws Exception {
         // Arrange
-        // clientePadrao
-        clientePadrao.setCpf("917.658.321-01");
-        clientePadrao.setEmail("lua3@cat.com");
-        clientePadrao.setTelefone("(21)12345-9905");
+        Cliente cliente = new Cliente();
+        cliente.setNome("Estrela");
+        cliente.setCpf("963.302.490-08");
+        cliente.setEmail("estrela2@cat.com");
+        cliente.setTelefone("(21)99888-9797");
+        cliente.setDataNascimento(LocalDate.parse("2001-08-21"));
+
         // Act
-        Cliente resultado = service.createCliente(clientePadrao);
+        Cliente resultado = service.createCliente(cliente);
 
         // Assert
         Assertions.assertNotNull(resultado);
-        Assertions.assertEquals(resultado.getNome(), "Lua");
-        Assertions.assertEquals(resultado.getCpf(), "917.658.321-01");
-        Assertions.assertEquals(resultado.getEmail(), "lua@cat.com");
+        Assertions.assertEquals(resultado.getNome(), "Estrela");
+        Assertions.assertEquals(resultado.getCpf(), "963.302.490-08");
+        Assertions.assertEquals(resultado.getEmail(), "estrela2@cat.com");
     }
 
     @Test
@@ -126,27 +129,30 @@ public class ClienteServiceTest {
     @Test
     public void should_update_cliente() throws Exception {
         // Arrange
-        // clientePadrao
-        clientePadrao.setCpf("917.658.331-75");
-        clientePadrao.setEmail("lua2@cat.com");
-        clientePadrao.setTelefone("(21)12345-9902");
-        Cliente cliente = service.createCliente(clientePadrao);
+        Cliente cliente = new Cliente();
+        cliente.setNome("Estrela");
+        cliente.setCpf("098.929.697-07");
+        cliente.setEmail("estrela2@cat.com");
+        cliente.setTelefone("(21)99888-9797");
+        cliente.setDataNascimento(LocalDate.parse("2001-08-21"));
+
+        service.createCliente(cliente);
 
         String newNome = "Estrela";
-        String newEmail = "estrela@cat.com";
-        String newTelefone = "(21)99588-7755";
+        String newEmail = "estrela@cat.test.com";
+        String newTelefone = "(21)99588-7775";
 
-        clientePadrao.setNome(newNome);
-        clientePadrao.setEmail(newEmail);
-        clientePadrao.setTelefone(newTelefone);
+        cliente.setNome(newNome);
+        cliente.setEmail(newEmail);
+        cliente.setTelefone(newTelefone);
 
         // Act
-        Cliente resultado = service.atualizaCliente(cliente.getId(), clientePadrao);
+        Cliente resultado = service.atualizaCliente(cliente.getId(), cliente);
 
         // Assert
         Assertions.assertNotNull(resultado);
         Assertions.assertEquals(resultado.getNome(), "Estrela");
-        Assertions.assertEquals(resultado.getEmail(), "estrela@cat.com");
+        Assertions.assertEquals(resultado.getEmail(), "estrela@cat.test.com");
     }
 
 }
